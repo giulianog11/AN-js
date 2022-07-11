@@ -20,58 +20,59 @@ mates.push(mateCam)
 mates.push(bombAlp)
 mates.push(bombAce)
 
-console.log(mates)
 
-for(let i = 0; i<mates.length; i++){
-  alert(`${mates[i].id} - ${mates[i].nombre} ${mates[i].precio}`)
+const calcularPrecioFinal = (lista) => {
+  let gastoTotal = 0;
+  lista.map((mate) => { gastoTotal += mate.precio })
+  return gastoTotal
+};   
+
+const mostrarProductos = (lista) => {
+  let mensaje = `Su compra es: ` 
+  lista.map((mate) => {mensaje += ` | ` +  mate.nombre + `  ` + mate.precio + ` | `})
+   return mensaje
 }
 
-// mates.map((mate) => {
-//   return(alert(`${mate.id} - ${mate.nombre} ${mate.precio}`))
-// })
+let continuar = confirm(`¿Desea comprar?`);
+let precioFinal = 0 
 
-let gastoTotal = 0;
-
-const sumarProducto = (producto) => {
-  return (gastoTotal += producto);
-};
-
-function comprar() {
+if (continuar) {
+  let matesComprados = []
   while (continuar) {
     let producto =
       prompt(`Te presentamos nuestro catálogo. ¿Qué producto te interesa? Escribí su código!
-      ${mateImp.id} - ${mateImp.nombre} ${mateImp.precio}
-      ${mateTor.id} - ${mateTor.nombre} ${mateTor.precio}
-      ${mateCam.id} - ${mateCam.nombre} ${mateCam.precio}
-      ${bombAlp.id} - ${bombAlp.nombre} ${bombAlp.precio}
-      ${bombAce.id} - ${bombAce.nombre} ${bombAce.precio}
+      ${mates[0].id} - ${mates[0].nombre} ${mates[0].precio}
+      ${mates[1].id} - ${mates[1].nombre} ${mates[1].precio}
+      ${mates[2].id} - ${mates[2].nombre} ${mates[2].precio}
+      ${mates[3].id} - ${mates[3].nombre} ${mates[3].precio}
+      ${mates[4].id} - ${mates[4].nombre} ${mates[4].precio}
       AN6 - Salir
-
-    Gastaste: ${gastoTotal}`);
-
+      Gastaste: ${precioFinal}`);
+    
     switch (producto) {
       case "AN1":
-        sumarProducto(mateImp.precio);
+        matesComprados.push(mateImp);
         break;
       case "AN2":
-        sumarProducto(mateTor.precio);
+        matesComprados.push(mateTor);
         break;
       case "AN3":
-        sumarProducto(mateCam.precio);
+        matesComprados.push(mateCam)
         break;
       case "AN4":
-        sumarProducto(bombAlp.precio);
+        matesComprados.push(bombAlp)
         break;
       case "AN5":
-        sumarProducto(bombAce.precio);
+        matesComprados.push(bombAce);
         break;
       case "AN6":
         continuar = false;
         break;
       default:
-        alert("Ingresaste un valor invalido");
+        alert("Ingresaste un valor incorrecto");
         break;
     }
+     precioFinal = calcularPrecioFinal(matesComprados)
 
     if (producto != "AN6")
       continuar = confirm(`Desea seguir comprando? 
@@ -79,8 +80,11 @@ function comprar() {
     - CANCELAR para finalizar.`);
   }
 
-  alert(`Tu monto total es de $${gastoTotal}`);
+  alert(`${mostrarProductos(matesComprados)} y el gasto total es de: $${precioFinal}`);
 
+let flag = true
+
+while (flag){
   let pago = prompt(`¿Con qué método preferís abonar?: 
     1 - Tarjeta de crédito (3 cuotas s/ interés disponibles).
     2 - Tarjeta de débito / Transferencia bancaria.
@@ -88,28 +92,36 @@ function comprar() {
 Ingresá el número de opción que elijas.`);
 
   if (pago === "1") {
-    alert(
-      `El gasto total es de $${gastoTotal}, y tu pago lo realizarás en 3 cuotas de $${
-        (gastoTotal / 3).toFixed(2)
-      } cada una.`
-    );
+    if (confirm (`¿Está seguro que desea pagar con tarjeta de crédito?`)){
+      alert(
+        `El gasto total es de $${precioFinal}, y tu pago lo realizarás en 3 cuotas de $${
+          (precioFinal / 3).toFixed(2)
+        } cada una.`
+      );
+      flag = false 
+    }
+    
   } else if (pago === "2") {
+    if (confirm (`¿Está seguro que desea pagar con tarjeta de débito?`)){
     alert(
-      `El gasto total es de $${gastoTotal}. Nos estaremos comunicándo con vos para enviarte los datos bancarios para transferir el dinero.`
+      `El gasto total es de $${precioFinal}. Nos estaremos comunicándo con vos para enviarte los datos bancarios para transferir el dinero.`
     );
+    flag = false
+    }
   } else if (pago === "3") {
-    alert(`El gasto total es de $${gastoTotal * 0.9}.`);
+    if (confirm (`¿Está seguro que desea pagar con efectivo?`)){
+    alert(`El gasto total es de $${precioFinal * 0.9}.`);
+    flag = false
+    }
   } else {
     alert(`Error! Ingresá correctamente la opción.`);
   }
-}
+  }
+} 
 
-let continuar = confirm(`¿Desea comprar?`);
-if (continuar) {
-  comprar();
-} else {
-  alert(`Te agradecemos por confiar en nosotros. La Vida es mejor con un Mate! Salí a conocer el mundo. Disfrute nuestra página`);
-}
+alert(`Te agradecemos por visitar nuestra web. La Vida es mejor con un Mate! Salí a conocer el mundo.`)
+
+
 
 
 
