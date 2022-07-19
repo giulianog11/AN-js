@@ -1,0 +1,16 @@
+
+.pic{
+    height: 90vh;
+}
+.redess{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.products1{
+    text-align: center;
+    margin: 20px;
+}
+.logo2{
+    margin: 10px;
+}
