@@ -37,6 +37,7 @@
               </ul>
             </div>
         </div>
+        <div style="width: 500px" class="pr-1"><h4 id="bienvenida"></h4></div>
         <button type="button" class="btn btn-primary carrito m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Carrito
         </button>
@@ -68,15 +69,52 @@
           <h2>PRODUCTOS DESTACADOS</h2>
         </div>
         <div id="cardContainer" class="row justify-content-around">
-          <!-- <div class="card" style="width: 18rem; margin-bottom: 10px;">
-              <img src="./media/img/Card1.jpg" class="card-img-top p-2 card1" alt="mate.imperial">
-              <div class="card-body">
-                <h5 class="card-title">Mate Imperial de Alpaca Cincelado</h5>
-                <p class="card-text">Mate de primera calidad con guarda abstracta y cincelado a elección del cliente.</p>
-                <a href="#" class="btn btn-primary">Agregar al carrito</a>
-              </div> -->
         </div>
+        
+        <section class="p-3 mt-4 contacto">
+          <div class="row">
+            <article class="col-md-6">
+              <img src="./media/img/Se nomade.png" class="mx-auto d-block an" style="width: 60%" alt="se nomade">
+            </article>
+            <article class="col-md-6">
+              <form id="contacto" class="row g-3">
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="Nombre">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputPassword4" class="form-label">Apellido</label>
+                  <input type="text" class="form-control" id="Apellido">
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="Email" placeholder="">
+                </div>
+                <div class="col-md-8">
+                  <label for="inputCity" class="form-label">Ciudad</label>
+                  <input type="text" class="form-control" id="Ciudad">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputZip" class="form-label">Código Postal</label>
+                  <input type="text" class="form-control" id="ZipCode">
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                  
+                </div>
+                <div class="col-12">
+                  <div id="alert" class="d-none row alert alert-success" role="alert">
+                    
+                  </div>
+                </div>
+              </form>
+            </article>
+        </section>
+        </div>
+        
+
     </main>
+    </div>
     <footer class="container-fluid bg-dark">
         <div>
           <h2 class="pt-5 text-white text-center p-0">EL MOVIMIENTO ES VIDA Y SI TENÉS UN MATE, MEJOR</h2>
@@ -85,16 +123,14 @@
           <a href="https://www.instagram.com/matesairenomade/?hl=es-la" target="_blank"><img class="logo2" src="./media/img/logoIG.png" width="50px" alt="instagram"></a>
           <a href="https://www.facebook.com/Aire.Nomade" target="_blank"><img class="logo2" src="./media/img/logoFB.png" width="50px" alt="facebook"></a>
       </div>
-
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Cashito</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
