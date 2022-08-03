@@ -59,7 +59,7 @@ window.onload = () => {
         <p class="card-text">${mate.descripcion}</p>
         <p class="card-text price">$${mate.precio}</p>
         <p class="d-none id">${mate.id}</p>
-        <button class="btn btn-primary add-to-cart" data-id=${mate.id} data-price=${mate.precio}
+        <button id=cardbtn class="btn btn-primary add-to-cart" data-id=${mate.id} data-price=${mate.precio}
         data-name=${mate.nombre}>Agregar al carrito</button>
       </div>`;
   });
@@ -77,7 +77,7 @@ window.onload = () => {
         nombre: mate.querySelector(".name").innerText,
         id: mate.querySelector(".id").innerText,
         precio: mate.querySelector(".price").innerText,
-        cantidad: 1
+        cantidad: 1,
       };
       if (matesIds.indexOf(mateComprado.id) === -1) {
         matesIds.push(mateComprado.id);
@@ -86,21 +86,53 @@ window.onload = () => {
         modal.innerHTML =
           modal.innerHTML +
           `
-        <div id=${mateComprado.id} class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">${mateComprado.nombre}</h5>
-              <p class="card-text"><small class="text-muted">${mateComprado.precio}</small></p>
-            </div>
-            <p class="card-text quantity">${mateComprado.cantidad}</p>
+        <div id=${mateComprado.id} class="border p-2" style="max-width: 540px;">
+          <div class="d-flex justify-content-around align-items-center w-100 ">
+            <p class="mateComprado">${mateComprado.nombre}</p>
+            <p class="text-muted price">${mateComprado.precio}</p>
+            <p class="quantity">${mateComprado.cantidad}</p>
+            <button type="button" class="btnModal btn btn-secondary">X</button>
           </div>
-        </div>
       </div>`;
+        Toastify({
+          text: `Agregaste ${mateComprado.nombre}`,
+          duration: 1500,
+          close: true,
+          gravity: `bottom`,
+          position: "right",
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d",
+          },
+        }).showToast();
+        const deleteBtns = document.getElementsByClassName("btnModal");
+        console.log(deleteBtns);
+        for (let i = 0; i < deleteBtns.length; i++) {
+          deleteBtns[i].addEventListener("click", function (e) {
+            const mate = deleteBtns[i].parentElement.parentElement
+            cartBtn.innerHTML = `Carrito ${chartItems - 1} `
+            mate.remove()
+          });
+        }
       } else {
-        const x = document.getElementById(mateComprado.id)
-        let quantum = parseInt(x.querySelector('.quantity').innerText)
-        x.querySelector('.quantity').innerText = quantum + 1
+        const mateModal = document.getElementById(mateComprado.id);
+        let quantum = parseInt(mateModal.querySelector(".quantity").innerText);
+        mateModal.querySelector(".quantity").innerText = quantum + 1;
+        let precioMate = parseInt(
+          mateModal.querySelector(".price").innerHTML.replace("$", "")
+        );
+        mateModal.querySelector(".price").innerHTML = `$${
+          precioMate * mateModal.querySelector(".quantity").innerText
+        }`;
+        Toastify({
+          text: `Añadiste otra unidad de ${mateComprado.nombre}`,
+          duration: 1500,
+          close: true,
+          gravity: `bottom`,
+          position: "right",
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d",
+          },
+        }).showToast();
       }
     });
   }
@@ -141,3 +173,48 @@ const apellido = localStorage.getItem(`Apellido`);
 if (nombre || apellido) {
   bienvenida.innerText = `Bienvenido ${nombre} ${apellido}!`;
 }
+
+const compriBtn = document.getElementById(`compri`);
+const cancelarBtn = document.getElementById(`cancelar`);
+
+cancelarBtn.addEventListener(`click`, () => {
+  Swal.fire({
+    icon: "warning",
+    title: "¿Seguro deseas eliminar este producto del carrito?",
+    showConfirmButton: true,
+    showCancelButton: true,
+    cancelButtonText: `No`,
+    confirmButtonText: `Si, estoy seguro`,
+  }).then((result) => {
+    console.log(result);
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: `Se eliminó el producto`,
+        icon: `success`,
+        confirmButtonText: `Ok`,
+        timer: 2000,
+      });
+    }
+  });
+});
+
+compriBtn.addEventListener(`click`, () => {
+  Swal.fire({
+    icon: "question",
+    title: "¿Deseas comprar todos los productos del carrito?",
+    showConfirmButton: true,
+    showCancelButton: true,
+    confirmButtonText: `Si, estoy seguro`,
+    cancelButtonText: `Salir urgentemente`,
+  }).then((result) => {
+    console.log(result);
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: `Compra realizada`,
+        icon: `success`,
+        confirmButtonText: `Ok`,
+        timer: 2000,
+      });
+    }
+  });
+});
