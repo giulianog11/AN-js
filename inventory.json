@@ -4,24 +4,24 @@
     "precio": 5000 ,
     "id":"AN1" ,
     "imagen":  "./media/img/Card1.jpg" ,
-    "descripcion": "descripcion"
+    "descripcion": "Mate de primera calidad con guarda abstracta y cincelado a elección del cliente."
 }, {
     "nombre": "Mate Torpedo",
     "precio": 3000 ,
     "id":"AN2" ,
     "imagen": "./media/img/Card2.jpg" ,
-    "descripcion": "descripcion"
+    "descripcion": "El clásico amigo de todos los días. Un guerrero de la aventura."
 }, {
     "nombre": "Mate Camionero",
     "precio": 3500 ,
     "id":"AN3" ,
     "imagen": "./media/img/Card3.jpg" ,
-    "descripcion": "descripcion"
+    "descripcion": "Ideal para viajar en cualquier tipo de transporte. Para vos y para compartir."
 }, {
     "nombre": "Bombilla de Alpaca",
     "precio": 2200 ,
     "id":"AN4" ,
     "imagen": "./media/img/P1.jpg" ,
-    "descripcion": "descripcion"
+    "descripcion": "Bombilla de acero de alpaca de calidad premium. Al buen mate, buena bombilla."
 }
 ]

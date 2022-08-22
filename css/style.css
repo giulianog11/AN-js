@@ -20,3 +20,15 @@
     font-style: normal;
     font-weight: bold;
 }
+
+.nav-color{
+    font-size: 1.2rem;
+}
+.nav-link{
+    color: black;
+}
+.hover:hover{
+    transform: scale(1.05);
+    transition: 100ms ease;
+    opacity: 0.9;
+}
